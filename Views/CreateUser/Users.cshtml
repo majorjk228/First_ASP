@@ -3,9 +3,9 @@
     ViewBag.Title = "Все пользователи";
 }
 <table class="table">
-    <tr><td>Имя</td><td>Возраст</td></tr>
+    <tr><td>Имя</td><td>Фамилия</td><td>Возраст</td><td>Город</td></tr>
     @foreach (var item in Model)
     {
-        <tr><td>@item.Name</td><td>@item.Age</td></tr>
+        <tr><td>@item.Name</td><td>@item.LastName</td><td>@item.Age</td><td>@item.City</td></tr>
     }
 </table>

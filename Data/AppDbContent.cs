@@ -1,5 +1,6 @@
 ﻿using First_ASP.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
 namespace First_ASP.Data
@@ -19,9 +20,8 @@ namespace First_ASP.Data
             modelBuilder.Entity<User>().HasData(
             new User { Id = 1, Name = "Tom", LastName = "Petrov", Age = 37 },
             new User { Id = 2, Name = "Bob", LastName = "Ivanov", Age = 41 },
-            new User { Id = 3, Name = "Sam", LastName = "Sidorov", Age = 24 }
+            new User { Id = 3, Name = "Sam", LastName = "Sidorov", Age = 24, City = "Perm" }
             );
         }
-
     }
 }

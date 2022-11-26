@@ -8,7 +8,7 @@ namespace First_ASP.Models
 
         [Display(Name = "Введите Имя")]
         [Required (ErrorMessage = "Нужно ввести имя")]
-        [StringLength(3, ErrorMessage = "Имя не менее 3 символов")]
+        [MinLength(3, ErrorMessage = "Нужно ввести не меньше 3 символов")]
         public string Name { get; set; }
 
         [Display(Name = "Введите Фамилию")]
@@ -18,6 +18,8 @@ namespace First_ASP.Models
         [Display(Name = "Введите Возраст")]
         [Required]
         public int Age { get; set; }
+        [Wrong("Perm", ErrorMessage = "Вы должеы быть из Перми")]
+        public string? City { get; set; }
 
     }
 }
