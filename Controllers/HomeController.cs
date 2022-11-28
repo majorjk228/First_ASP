@@ -12,9 +12,14 @@ namespace First_ASP.Controllers
         {
             _logger = logger;
         }
-
+       /* public void OnGet()
+        {
+            _logger.LogInformation("About page visited at {DT}",
+                DateTime.UtcNow.ToLongTimeString());
+        }*/
         public IActionResult Index()
         {
+            _logger.LogInformation($"Мы перешли в контроллер Home. Time:{ DateTime.Now.ToLongTimeString()}"); // Запись в лог
             return View();
         }
 

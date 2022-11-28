@@ -1,0 +1,28 @@
+Мы перешли в контроллер Home
+Adding Routes
+Now listening on: https://localhost:7226
+Now listening on: http://localhost:5226
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: D:\Users\typakek\Source\Repos\
+Мы перешли в контроллер Home
+Adding Routes
+Now listening on: https://localhost:7226
+Now listening on: http://localhost:5226
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: D:\Users\typakek\Source\Repos\
+Мы перешли в контроллер Home. Time:{ DateTime.Now.ToLongTimeString()}
+Adding Routes
+Now listening on: https://localhost:7226
+Now listening on: http://localhost:5226
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: D:\Users\typakek\Source\Repos\
+Adding Routes
+Now listening on: https://localhost:7226
+Now listening on: http://localhost:5226
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: D:\Users\typakek\Source\Repos\
+Мы перешли в контроллер Home. Time:21:39:27
