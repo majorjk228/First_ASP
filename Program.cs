@@ -18,7 +18,7 @@ builder.Services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>(); 
 builder.Services.AddTransient<IServiceItemsRepository, EFServiceItemsRepository>();
 builder.Services.AddTransient<DataManager>();
 
-// получаем строку подключения из файла конфигурации
+// получаем строку подключения из файла конфигурации 
 var connectionString = Config.ConnectionString;
 // добавляем контекст ApplicationContext в качестве сервиса в приложение
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
@@ -51,8 +51,17 @@ builder.Logging.AddConsole();
 // устанавливаем файл для логгирования
 builder.Logging.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "logger.txt"));
 
+//настраиваем политику авторизации для Admin area
+builder.Services.AddAuthorization(x =>
+{
+    x.AddPolicy("AdminArea", policy => { policy.RequireRole("admin"); });
+});
+
 // добавляем поддержку котнроллеров и представлений (MVC)
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(x =>
+{
+    x.Conventions.Add(new AdminAreaAuthorization("Admin", "AdminArea"));
+});
 
 var app = builder.Build();
 // в процессе разработки нам важно видеть подробную информацию об ошибках
@@ -79,8 +88,11 @@ app.UseAuthorization();
 
 // регистрируем нужные маршруты
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    name: "admin", 
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+   name: "default",
+   pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Logger.LogInformation("Adding Routes"); // Строка тестовая для лога в консоль
 
