@@ -10,7 +10,7 @@ namespace First_ASP.Models
 
         public WrongAttribute(string name) { }
 
-        public override bool IsValid(object value)
+        public override bool IsValid(object? value)
         {
             var nameCity = value.ToString();
             if (nameCity == City && value != null)

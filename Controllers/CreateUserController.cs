@@ -1,4 +1,5 @@
-﻿using First_ASP.Data;
+﻿using First_ASP.Domains;
+using First_ASP.Domains.Entities;
 using First_ASP.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,8 +8,8 @@ namespace First_ASP.Controllers
 {
     public class CreateUserController : Controller
     {
-        private AppDbContent db; // Для взаимодействия с базой данных 
-        public CreateUserController(AppDbContent context)
+        private AppDbContext db; // Для взаимодействия с базой данных 
+        public CreateUserController(AppDbContext context)
         {
             db = context;
         }
@@ -26,7 +27,7 @@ namespace First_ASP.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);          // Добавляем
+                //db.Users.Add(user);          // Добавляем
                 await db.SaveChangesAsync(); // Сохраняем
 
                 return Redirect("/CreateUser/Users");

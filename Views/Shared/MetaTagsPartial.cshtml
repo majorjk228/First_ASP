@@ -1,0 +1,19 @@
+﻿@using First_ASP.Service;
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+@if(ViewBag.Title != null) // Подтягиваем название сайта БД
+{
+    <title>@ViewBag.Title</title>
+}
+else
+{
+    <title>@Config.CompanyName</title> // Если нет то выводим это
+}
+@if (ViewBag.Description != null) // Подтягиваем описание сайта БД
+{
+    <meta name="description" content=" @ViewBag.Description" />
+}
+@if (ViewBag.Keywords != null)
+{
+    <meta name="keywords" content=" @ViewBag.Keywords" />
+}
