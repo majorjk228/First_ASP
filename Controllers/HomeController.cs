@@ -1,4 +1,5 @@
-﻿using First_ASP.Models;
+﻿using First_ASP.Domains;
+using First_ASP.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,9 +9,12 @@ namespace First_ASP.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly DataManager dataManager; // Для того, чтобы иметь доступ к базе данных
+
+        public HomeController(ILogger<HomeController> logger, DataManager dataManager)
         {
             _logger = logger;
+            this.dataManager = dataManager;
         }
         /* public void OnGet()
          {
@@ -20,12 +24,12 @@ namespace First_ASP.Controllers
         public IActionResult Index()
         {
             _logger.LogInformation($"Мы перешли в контроллер Home. Time:{DateTime.Now.ToLongTimeString()}"); // Запись в лог
-            return View();
+            return View(dataManager.TextFields.GetTextFieldByCodeWord("PageIndex"));   // Возвращаем представление, в качестве модели передает название из БД(Из AppDBContext)
         }
 
-        public IActionResult Privacy()
+        public IActionResult Contacts()
         {
-            return View();
+            return View(dataManager.TextFields.GetTextFieldByCodeWord("PageContacts")); // Возвращаем представление, в качестве модели передает название из БД(Из AppDBContext)
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -13,7 +13,7 @@
 
 		<!-- Banner -->
 
-		@await Html.PartialAsync("BannerPartial")	    @*// Подключаем Banner*@
+		@*@await Html.PartialAsync("BannerPartial")	    @*// Подключаем Banner*@
 
 		<!-- Main -->
 		<div id="main">
@@ -22,8 +22,8 @@
 					<div class="col-6 col-12-medium">
                         @RenderBody()
 					</div>
+                    @await Html.PartialAsync("SidebarPartial")	    @*// Подключаем Sidebar*@
 				</div>
-                @await Html.PartialAsync("SidebarPartial")	    @*// Подключаем Sidebar*@
 			</div>
 		</div>
 
