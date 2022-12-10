@@ -4,6 +4,7 @@ using First_ASP.Domains;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstASP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221210094907_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,7 +106,7 @@ namespace FirstASP.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2022, 12, 10, 9, 52, 19, 500, DateTimeKind.Utc).AddTicks(9412),
+                            DateAdded = new DateTime(2022, 12, 10, 9, 49, 7, 139, DateTimeKind.Utc).AddTicks(1039),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
@@ -111,7 +114,7 @@ namespace FirstASP.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2022, 12, 10, 9, 52, 19, 500, DateTimeKind.Utc).AddTicks(9430),
+                            DateAdded = new DateTime(2022, 12, 10, 9, 49, 7, 139, DateTimeKind.Utc).AddTicks(1055),
                             Text = "Содержание заполняется администратором",
                             Title = "Наши услуги"
                         },
@@ -119,7 +122,7 @@ namespace FirstASP.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2022, 12, 10, 9, 52, 19, 500, DateTimeKind.Utc).AddTicks(9432),
+                            DateAdded = new DateTime(2022, 12, 10, 9, 49, 7, 139, DateTimeKind.Utc).AddTicks(1058),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
@@ -185,14 +188,14 @@ namespace FirstASP.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "2bdf605c-a8a5-4a15-a591-462d7af75839",
+                            ConcurrencyStamp = "b4839e98-acf7-4d06-b7d2-1755ecdcb8b6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "c46bbbae-3c45-438e-9ee9-594306aeb8f0",
-                            ConcurrencyStamp = "f5ce19f4-fd0e-40b6-91b8-6fd95659eaf5",
+                            ConcurrencyStamp = "389f5ceb-2a9b-4399-9ace-0cd80efb8741",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -292,13 +295,13 @@ namespace FirstASP.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "49171ef7-ea2a-4f6a-bfbe-8da9496ba956",
+                            ConcurrencyStamp = "0e9ba8b5-eba5-4137-a4e9-06350ce16e2f",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMQ9B9XT6+vz+LIJIEINCngRFxuglVxos51FNl9WeUmHaL47XnThwuVvruVSqNk7EQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHnGojce0MJb4dSC0BEKGnCifl+JWw4KTJu27vhQpSRlAaqkz9HphCiP9QyhkF/CGg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -308,13 +311,13 @@ namespace FirstASP.Migrations
                         {
                             Id = "eac74484-b5ab-4acc-a36c-17a27cf417c8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f2adad32-75ae-4715-898c-82a827a75526",
+                            ConcurrencyStamp = "6011a9a7-018c-4e23-97e4-503d5fb4c0ec",
                             Email = "my1@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY1@EMAIL.COM",
                             NormalizedUserName = "defUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAECwaAuCtXNIb7JEbPCn8uf3MT0LXzQ+mli3Mh/Ar3d8uy+L+DMqkac/MoRN6G7hDVQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFFe0xIK9GSv1MdpcXXnIDLtkfUdtVs1aeP/n0v58IiazO2fJ6d4BI+ogDS6DbLgqA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -324,13 +327,13 @@ namespace FirstASP.Migrations
                         {
                             Id = "eac74484-b5ab-4acc-a36c-17a27cf418c8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "58db4249-5f67-41af-9358-07f8dac05050",
+                            ConcurrencyStamp = "2ef79102-bbfe-4aae-a5b0-002e6cf76e3f",
                             Email = "my12@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY12@EMAIL.COM",
                             NormalizedUserName = "defUSER2",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKtt2PovGe0IrFFbUyDX16w+sNW1MctwDB2rh15v/UjznoWN/PcgHbaFNPpeXMsH9g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKnJz07bLnnGCnAfoijQ+bnGSfcPlEk2jgYBH5XL6GVbx/JbY5++lpQX0/+tRuOWUA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -408,11 +411,6 @@ namespace FirstASP.Migrations
                         new
                         {
                             UserId = "eac74484-b5ab-4acc-a36c-17a27cf417c8",
-                            RoleId = "c46bbbae-3c45-438e-9ee9-594306aeb8f0"
-                        },
-                        new
-                        {
-                            UserId = "eac74484-b5ab-4acc-a36c-17a27cf418c8",
                             RoleId = "c46bbbae-3c45-438e-9ee9-594306aeb8f0"
                         });
                 });

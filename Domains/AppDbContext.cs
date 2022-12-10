@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using First_ASP.Domains.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -12,23 +11,31 @@ namespace First_ASP.Domains
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
         {
-            Database.EnsureCreated(); // создаем базу данных при первом обращении
+            //Database.EnsureCreated(); // создаем базу данных при первом обращении
         }
 
         public DbSet<TextField> TextFields { get; set; }
         public DbSet<ServiceItem> ServiceItems { get; set; }
+        public DbSet<CreateUser> CreateUsers { get; set; } = null!; //Свойство DbSet представляет собой коллекцию объектов, (Сама Таблица Users)
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole // Создаем роли
             {
                 Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                Name = "admin",
+                Name = "Admin",
                 NormalizedName = "ADMIN"
             });
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole // Создаем роли
+            {
+                Id = "c46bbbae-3c45-438e-9ee9-594306aeb8f0",
+                Name = "User",
+                NormalizedName = "USER"
+            });
 
+            #pragma warning disable CS8625 // Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.
             modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
             {
                 Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
@@ -40,11 +47,45 @@ namespace First_ASP.Domains
                 PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "superpassword"),
                 SecurityStamp = string.Empty
             });
+            
+            modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
+            {
+                Id = "eac74484-b5ab-4acc-a36c-17a27cf417c8",
+                UserName = "Alex",
+                NormalizedUserName = "defUSER",
+                Email = "my1@email.com",
+                NormalizedEmail = "MY1@EMAIL.COM",
+                EmailConfirmed = true,
+                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "123"),
+                SecurityStamp = string.Empty
+            });
+            modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
+            {
+                Id = "eac74484-b5ab-4acc-a36c-17a27cf418c8",
+                UserName = "Alex2",
+                NormalizedUserName = "defUSER2",
+                Email = "my12@email.com",
+                NormalizedEmail = "MY12@EMAIL.COM",
+                EmailConfirmed = true,
+                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "123"),
+                SecurityStamp = string.Empty
+            });
+            #pragma warning restore CS8625 // Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.
 
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> // Привязываем юзера к роли
+            {
+                RoleId = "44546e06-8719-4ad8-b88a-f271ae9d6eab", // Admin
+                UserId = "3b62472e-4f66-49fa-a20f-e7685b9565d8"
+            });
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
-                RoleId = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                UserId = "3b62472e-4f66-49fa-a20f-e7685b9565d8"
+                RoleId = "c46bbbae-3c45-438e-9ee9-594306aeb8f0", // DefaultUser
+                UserId = "eac74484-b5ab-4acc-a36c-17a27cf417c8",
+            });
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = "c46bbbae-3c45-438e-9ee9-594306aeb8f0", // DefaultUser
+                UserId = "eac74484-b5ab-4acc-a36c-17a27cf418c8",
             });
             // новый вариант
             modelBuilder.Entity<TextField>().HasData(

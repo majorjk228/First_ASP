@@ -5,7 +5,7 @@ using First_ASP.Models;
 using First_ASP.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +32,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opts =>
     opts.Password.RequireLowercase = false;
     opts.Password.RequireUppercase = false;
     opts.Password.RequireDigit = false;
-}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();//.AddRoles<IdentityRole>(); // Добавляем ЕФ Кор использовать хранилище, использовать роли.
 
 //настраиваем authentication cookie
 builder.Services.ConfigureApplicationCookie(options =>
@@ -49,7 +49,7 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
 // устанавливаем файл для логгирования
-builder.Logging.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "logger.txt"));
+//builder.Logging.AddFilter(Path.Combine(Directory.GetCurrentDirectory(), "logger.txt"));
 
 //настраиваем политику авторизации для Admin area
 builder.Services.AddAuthorization(x =>

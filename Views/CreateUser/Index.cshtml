@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model CreateUser
 @{
     ViewData["Title"] = "Создание пользователя";
 }
@@ -19,9 +19,9 @@
         <input asp-for="Age" />
         <span asp-validation-for="Age"></span>
 
-        <label asp-for="City"></label>
-        <input asp-for="City" />
-        <span asp-validation-for="City"></span>
+        <label asp-for="CompanyName"></label>
+        <input asp-for="CompanyName" />
+        <span asp-validation-for="CompanyName"></span>
 
         <input type="submit" value="Отправить" />
     </form>

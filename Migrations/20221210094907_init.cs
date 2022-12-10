@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FirstASP.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,13 +53,30 @@ namespace FirstASP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CreateUsers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CreateUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ServiceItems",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Subtitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Subtitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TitleImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MetaTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MetaDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -200,27 +217,40 @@ namespace FirstASP.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "4673d578-125a-4c3f-9080-5545747ca14a", "admin", "ADMIN" });
+                values: new object[,]
+                {
+                    { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "b4839e98-acf7-4d06-b7d2-1755ecdcb8b6", "Admin", "ADMIN" },
+                    { "c46bbbae-3c45-438e-9ee9-594306aeb8f0", "389f5ceb-2a9b-4399-9ace-0cd80efb8741", "User", "USER" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3b62472e-4f66-49fa-a20f-e7685b9565d8", 0, "772a287c-c72a-4f5b-94cf-43c809ca7d09", "my@email.com", true, false, null, "MY@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEJm5Vt4ZtypFq6gxfB/Y9xDXBkKTJERZtMISXOGvwXODZmQJ7dZG0q9iOSlVW5Dqkw==", null, false, "", false, "admin" });
+                values: new object[,]
+                {
+                    { "3b62472e-4f66-49fa-a20f-e7685b9565d8", 0, "0e9ba8b5-eba5-4137-a4e9-06350ce16e2f", "my@email.com", true, false, null, "MY@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEHnGojce0MJb4dSC0BEKGnCifl+JWw4KTJu27vhQpSRlAaqkz9HphCiP9QyhkF/CGg==", null, false, "", false, "admin" },
+                    { "eac74484-b5ab-4acc-a36c-17a27cf417c8", 0, "6011a9a7-018c-4e23-97e4-503d5fb4c0ec", "my1@email.com", true, false, null, "MY1@EMAIL.COM", "defUSER", "AQAAAAEAACcQAAAAEFFe0xIK9GSv1MdpcXXnIDLtkfUdtVs1aeP/n0v58IiazO2fJ6d4BI+ogDS6DbLgqA==", null, false, "", false, "Alex" },
+                    { "eac74484-b5ab-4acc-a36c-17a27cf418c8", 0, "2ef79102-bbfe-4aae-a5b0-002e6cf76e3f", "my12@email.com", true, false, null, "MY12@EMAIL.COM", "defUSER2", "AQAAAAEAACcQAAAAEKnJz07bLnnGCnAfoijQ+bnGSfcPlEk2jgYBH5XL6GVbx/JbY5++lpQX0/+tRuOWUA==", null, false, "", false, "Alex2" }
+                });
 
             migrationBuilder.InsertData(
                 table: "TextFields",
                 columns: new[] { "Id", "CodeWord", "DateAdded", "MetaDescription", "MetaKeywords", "MetaTitle", "Subtitle", "Text", "Title", "TitleImagePath" },
                 values: new object[,]
                 {
-                    { new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"), "PageContacts", new DateTime(2022, 12, 3, 14, 40, 5, 752, DateTimeKind.Utc).AddTicks(7585), null, null, null, null, "Содержание заполняется администратором", "Контакты", null },
-                    { new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"), "PageIndex", new DateTime(2022, 12, 3, 14, 40, 5, 752, DateTimeKind.Utc).AddTicks(7569), null, null, null, null, "Содержание заполняется администратором", "Главная", null },
-                    { new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"), "PageServices", new DateTime(2022, 12, 3, 14, 40, 5, 752, DateTimeKind.Utc).AddTicks(7583), null, null, null, null, "Содержание заполняется администратором", "Наши услуги", null }
+                    { new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"), "PageContacts", new DateTime(2022, 12, 10, 9, 49, 7, 139, DateTimeKind.Utc).AddTicks(1058), null, null, null, null, "Содержание заполняется администратором", "Контакты", null },
+                    { new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"), "PageIndex", new DateTime(2022, 12, 10, 9, 49, 7, 139, DateTimeKind.Utc).AddTicks(1039), null, null, null, null, "Содержание заполняется администратором", "Главная", null },
+                    { new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"), "PageServices", new DateTime(2022, 12, 10, 9, 49, 7, 139, DateTimeKind.Utc).AddTicks(1055), null, null, null, null, "Содержание заполняется администратором", "Наши услуги", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "3b62472e-4f66-49fa-a20f-e7685b9565d8" });
+                values: new object[,]
+                {
+                    { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "3b62472e-4f66-49fa-a20f-e7685b9565d8" },
+                    { "c46bbbae-3c45-438e-9ee9-594306aeb8f0", "eac74484-b5ab-4acc-a36c-17a27cf417c8" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -279,6 +309,9 @@ namespace FirstASP.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "CreateUsers");
 
             migrationBuilder.DropTable(
                 name: "ServiceItems");

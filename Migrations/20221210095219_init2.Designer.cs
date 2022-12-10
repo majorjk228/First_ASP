@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstASP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221203144005_initial")]
-    partial class initial
+    [Migration("20221210095219_init2")]
+    partial class init2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,11 +44,9 @@ namespace FirstASP.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subtitle")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -108,7 +106,7 @@ namespace FirstASP.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2022, 12, 3, 14, 40, 5, 752, DateTimeKind.Utc).AddTicks(7569),
+                            DateAdded = new DateTime(2022, 12, 10, 9, 52, 19, 500, DateTimeKind.Utc).AddTicks(9412),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
@@ -116,7 +114,7 @@ namespace FirstASP.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2022, 12, 3, 14, 40, 5, 752, DateTimeKind.Utc).AddTicks(7583),
+                            DateAdded = new DateTime(2022, 12, 10, 9, 52, 19, 500, DateTimeKind.Utc).AddTicks(9430),
                             Text = "Содержание заполняется администратором",
                             Title = "Наши услуги"
                         },
@@ -124,10 +122,40 @@ namespace FirstASP.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2022, 12, 3, 14, 40, 5, 752, DateTimeKind.Utc).AddTicks(7585),
+                            DateAdded = new DateTime(2022, 12, 10, 9, 52, 19, 500, DateTimeKind.Utc).AddTicks(9432),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
+                });
+
+            modelBuilder.Entity("First_ASP.Models.CreateUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("Guid")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CreateUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -160,9 +188,16 @@ namespace FirstASP.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "4673d578-125a-4c3f-9080-5545747ca14a",
-                            Name = "admin",
+                            ConcurrencyStamp = "2bdf605c-a8a5-4a15-a591-462d7af75839",
+                            Name = "Admin",
                             NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "c46bbbae-3c45-438e-9ee9-594306aeb8f0",
+                            ConcurrencyStamp = "f5ce19f4-fd0e-40b6-91b8-6fd95659eaf5",
+                            Name = "User",
+                            NormalizedName = "USER"
                         });
                 });
 
@@ -260,17 +295,49 @@ namespace FirstASP.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "772a287c-c72a-4f5b-94cf-43c809ca7d09",
+                            ConcurrencyStamp = "49171ef7-ea2a-4f6a-bfbe-8da9496ba956",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJm5Vt4ZtypFq6gxfB/Y9xDXBkKTJERZtMISXOGvwXODZmQJ7dZG0q9iOSlVW5Dqkw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMQ9B9XT6+vz+LIJIEINCngRFxuglVxos51FNl9WeUmHaL47XnThwuVvruVSqNk7EQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = "eac74484-b5ab-4acc-a36c-17a27cf417c8",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f2adad32-75ae-4715-898c-82a827a75526",
+                            Email = "my1@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MY1@EMAIL.COM",
+                            NormalizedUserName = "defUSER",
+                            PasswordHash = "AQAAAAEAACcQAAAAECwaAuCtXNIb7JEbPCn8uf3MT0LXzQ+mli3Mh/Ar3d8uy+L+DMqkac/MoRN6G7hDVQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "Alex"
+                        },
+                        new
+                        {
+                            Id = "eac74484-b5ab-4acc-a36c-17a27cf418c8",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "58db4249-5f67-41af-9358-07f8dac05050",
+                            Email = "my12@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MY12@EMAIL.COM",
+                            NormalizedUserName = "defUSER2",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKtt2PovGe0IrFFbUyDX16w+sNW1MctwDB2rh15v/UjznoWN/PcgHbaFNPpeXMsH9g==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "Alex2"
                         });
                 });
 
@@ -340,6 +407,16 @@ namespace FirstASP.Migrations
                         {
                             UserId = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             RoleId = "44546e06-8719-4ad8-b88a-f271ae9d6eab"
+                        },
+                        new
+                        {
+                            UserId = "eac74484-b5ab-4acc-a36c-17a27cf417c8",
+                            RoleId = "c46bbbae-3c45-438e-9ee9-594306aeb8f0"
+                        },
+                        new
+                        {
+                            UserId = "eac74484-b5ab-4acc-a36c-17a27cf418c8",
+                            RoleId = "c46bbbae-3c45-438e-9ee9-594306aeb8f0"
                         });
                 });
 

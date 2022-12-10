@@ -1,4 +1,4 @@
-﻿namespace First_ASP.Models
+﻿/*namespace First_ASP.Models
 {
     public class FileLogger : ILogger, IDisposable // Класс для формирования текстового файла лога
     {
@@ -54,3 +54,4 @@
     }
 
 }
+*/
